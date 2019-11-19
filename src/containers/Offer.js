@@ -32,34 +32,6 @@ const Offer = props => {
         <p>Downloading: please wait...</p>
       ) : (
         <>
-          <div className="back-home">
-            <span>
-              <svg
-                width="12"
-                height="15"
-                viewBox="0 0 12 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.835 1.87001L10.055 0.100006L0.165009 10L10.065 19.9L11.835 18.13L3.70501 10L11.835 1.87001Z"
-                  fill="#000000"
-                  fillOpacity="0.7"
-                />
-              </svg>
-            </span>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "black",
-                paddingLeft: "5px",
-                paddingBottom: "5px"
-              }}
-              to={"/"}
-            >
-              Retour
-            </Link>
-          </div>
           <section className="offer">
             <div className="offer-block">
               <div className="offer-container">

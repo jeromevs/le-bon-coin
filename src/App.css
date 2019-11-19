@@ -343,7 +343,7 @@ aside {
 /* ############## Sign UP ########## */
 .create-account-container-page {
   width: 100%;
-  min-height: calc(100vh - 138px);
+  min-height: calc(100vh - 118px);
 
   background-color: #fafafa;
 }
@@ -376,6 +376,10 @@ aside {
   align-items: center;
 }
 
+.create-account-infos-block svg {
+  padding-right: 10px;
+}
+
 .create-account-box {
   height: 100%;
   width: 50%;
@@ -405,13 +409,25 @@ aside {
 .password-block {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  justify-content: flex-start;
 }
 
-.create-account-box button {
+.create-account-button-ok {
   height: 40px;
   width: 90%;
   color: white;
   background-color: #4183d7;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.create-account-button-notok {
+  height: 40px;
+  width: 90%;
+  color: white;
+  background-color: grey;
   border-radius: 5px;
   font-size: 1rem;
 }
@@ -427,7 +443,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 60px;
   background-color: #474747;
   color: white;
 }

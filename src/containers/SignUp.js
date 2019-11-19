@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { crop_3_2 } from "@material-ui/icons";
 
 const SignUp = props => {
   const history = useHistory();
@@ -9,6 +8,13 @@ const SignUp = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [cgv, setCgv] = useState(false);
+
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+  const CheckRegEx = () => {
+    passwordRegEx.test(password);
+  };
 
   const handleUsernameChange = event => {
     const value = event.target.value;
@@ -27,7 +33,7 @@ const SignUp = props => {
 
   const handlePassword2Change = event => {
     const value = event.target.value;
-    setPassword(value);
+    setPassword2(value);
   };
 
   const handleSubmit = event => {
@@ -37,14 +43,7 @@ const SignUp = props => {
     <div className="create-account-container-page">
       <div className="create-account-container">
         <div className="create-account-infos">
-          {/* <button
-            onClick={() => {
-              history.goBack();
-            }}
-          >
-            history
-          </button> */}
-          <h3 style={{ textAlign: "center" }}>Pourquoi cree un compte ?</h3>
+          <h3 style={{ textAlign: "center" }}>Pourquoi creer un compte ?</h3>
           <div className="create-account-infos-block">
             <span>
               <svg
@@ -63,7 +62,7 @@ const SignUp = props => {
               </svg>
             </span>
             <div className="create-account-infos-block-description">
-              <h5>Gagner du temps</h5>
+              <h4>Gagner du temps</h4>
               <p>
                 Publiez vos annonces rapidement, avec vos informations
                 pré-remplies chaque fois que vous souhaitez déposer une nouvelle
@@ -89,7 +88,7 @@ const SignUp = props => {
               </svg>
             </span>
             <div className="create-account-infos-block-description">
-              <h5>Soyez les premiers informés</h5>
+              <h4>Soyez les premiers informés</h4>
               <p>
                 Créez des alertes Immo ou Emploi et ne manquez jamais l’annonce
                 qui vous intéresse.
@@ -114,7 +113,7 @@ const SignUp = props => {
               </svg>
             </span>
             <div className="create-account-infos-block-description">
-              <h5>Visibilité</h5>
+              <h4>Visibilité</h4>
               <p>
                 Suivez les statistiques de vos annonces (nombre de fois où votre
                 annonce a été vue, nombre de contacts reçus).
@@ -150,6 +149,12 @@ const SignUp = props => {
                 value={password}
                 onChange={handlePasswordChange}
               ></input>
+              {passwordRegEx.test(password) === false && (
+                <p style={{ fontSize: "0.7rem", color: "#4183d7" }}>
+                  Pour plus de sécurité, votre mot de passe doit contenir au
+                  moins 8 caractères dont 1 chiffre et 1 lettre.
+                </p>
+              )}
             </div>
             <div className="password-block">
               <p>Confirmer mot de passe</p>
@@ -160,54 +165,98 @@ const SignUp = props => {
                 value={password2}
                 onChange={handlePassword2Change}
               ></input>
+              {password !== password2 ? (
+                <p style={{ fontSize: "0.7rem", color: "#db4437" }}>
+                  Les mots de passe saisis sont différents. Veuillez réessayer.
+                </p>
+              ) : (
+                ""
+              )}
             </div>
           </div>
-
-          <div className="eula-confirmation">
-            <span>
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M2 0H16C17.1 0 18 0.9 18 2V16C18 17.1 17.1 18 16 18H2C0.9 18 0 17.1 0 16V2C0 0.9 0.9 0 2 0ZM16 16V2H2V16H16Z"
-                  fill="#F56B2A"
-                />
-              </svg>
-            </span>
+          <div
+            className="eula-confirmation"
+            onClick={() => {
+              setCgv(!cgv);
+            }}
+          >
+            {cgv === true ? (
+              <span style={{ backgroundColor: "#F56B2A" }}>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="#f56b2a"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M2 0H16C17.1 0 18 0.9 18 2V16C18 17.1 17.1 18 16 18H2C0.9 18 0 17.1 0 16V2C0 0.9 0.9 0 2 0ZM16 16V2H2V16H16Z"
+                    fill="#F56B2A"
+                  />
+                </svg>
+              </span>
+            ) : (
+              <span>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="black"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M2 0H16C17.1 0 18 0.9 18 2V16C18 17.1 17.1 18 16 18H2C0.9 18 0 17.1 0 16V2C0 0.9 0.9 0 2 0ZM16 16V2H2V16H16Z"
+                    fill="black"
+                  />
+                </svg>
+              </span>
+            )}
 
             <span style={{ paddingLeft: "10px" }}>
               J'accepte les conditions
             </span>
           </div>
-          <button
-            className="create-account-button"
-            type="submit"
-            value="Submit"
-            onClick={() => {
-              axios
-                .post("https://leboncoin-api.herokuapp.com/api/user/sign_up", {
-                  username: username,
-                  email: email,
-                  password: password
-                })
-                .then(response => {
-                  if (response.data) {
-                    props.setShowModal(false);
-                    history.push("/");
-                    props.logIn(response.data);
-                    console.log(response.date);
-                  }
-                });
-            }}
-          >
-            Creer mon compte personnel
-          </button>
+
+          {password !== password2 || cgv === false ? (
+            <button className="create-account-button-notok">
+              Creer mon compte personnel
+            </button>
+          ) : (
+            <button
+              className="create-account-button-ok"
+              type="submit"
+              value="Submit"
+              onClick={async () => {
+                try {
+                  await axios
+                    .post(
+                      "https://leboncoin-api.herokuapp.com/api/user/sign_up",
+                      {
+                        username: username,
+                        email: email,
+                        password: password
+                      }
+                    )
+                    .then(response => {
+                      if (response.data) {
+                        props.setShowModal(false);
+                        history.push("/");
+                        props.logIn(response.data);
+                        console.log(response.date);
+                      }
+                    });
+                } catch (error) {
+                  console.log(error.message);
+                }
+              }}
+            >
+              Creer mon compte personnel
+            </button>
+          )}
         </aside>
       </div>
     </div>
