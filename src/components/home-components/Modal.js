@@ -48,7 +48,7 @@ const Modal = props => {
             <p>Mot de passe</p>
             <input
               className="modal-connexion-container-login-password"
-              type="text"
+              type="password"
               name="password"
               value={password}
               onChange={handlePasswordChange}
@@ -73,7 +73,6 @@ const Modal = props => {
                         props.setShowModal(false);
                         history.push("/");
                         props.logIn(response.data);
-                        console.log(response.data);
                       }
                     });
                 } catch (error) {

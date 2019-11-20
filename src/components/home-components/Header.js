@@ -3,33 +3,33 @@ import Logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 
 const Header = props => {
-  console.log(props);
-
   return (
     <header className="header">
       <Link style={{ border: "none" }} to={"/"}>
         <img className="logo-header" src={Logo} alt="logo bon coin" />
       </Link>
+      <Link style={{ textDecoration: "none" }} to={"/Publish/"}>
+        <button className="offer-submit">
+          <span className="offer-submit-button">
+            <svg
+              width="23"
+              height="23"
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M19.9583 0.625H3.04167C1.70042 0.625 0.625 1.7125 0.625 3.04167V19.9583C0.625 21.2875 1.70042 22.375 3.04167 22.375H19.9583C21.2875 22.375 22.375 21.2875 22.375 19.9583V3.04167C22.375 1.7125 21.2875 0.625 19.9583 0.625ZM19.9583 19.9583H3.04167V3.04167H19.9583V19.9583ZM12.7083 17.5417H10.2917V12.7083H5.45833V10.2917H10.2917V5.45833H12.7083V10.2917H17.5417V12.7083H12.7083V17.5417Z"
+                fill="white"
+              />
+            </svg>
+          </span>
+          <span className="offer-submit-text">Deposer une annonce</span>
+        </button>
+      </Link>
 
-      <button className="offer-submit">
-        <span className="offer-submit-button">
-          <svg
-            width="23"
-            height="23"
-            viewBox="0 0 23 23"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M19.9583 0.625H3.04167C1.70042 0.625 0.625 1.7125 0.625 3.04167V19.9583C0.625 21.2875 1.70042 22.375 3.04167 22.375H19.9583C21.2875 22.375 22.375 21.2875 22.375 19.9583V3.04167C22.375 1.7125 21.2875 0.625 19.9583 0.625ZM19.9583 19.9583H3.04167V3.04167H19.9583V19.9583ZM12.7083 17.5417H10.2917V12.7083H5.45833V10.2917H10.2917V5.45833H12.7083V10.2917H17.5417V12.7083H12.7083V17.5417Z"
-              fill="white"
-            />
-          </svg>
-        </span>
-        <span className="offer-submit-text">Deposer une annonce</span>
-      </button>
       <div className="search">
         <span className="search-logo">
           <svg
@@ -73,7 +73,9 @@ const Header = props => {
               />
             </svg>
           </span>
-          <button className="login-button">Se deconnecter</button>
+          <button className="login-button">
+            Se deconnecter{props.user.username}
+          </button>
         </div>
       ) : (
         <div

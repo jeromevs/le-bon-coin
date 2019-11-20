@@ -12,10 +12,6 @@ const SignUp = props => {
 
   const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-  const CheckRegEx = () => {
-    passwordRegEx.test(password);
-  };
-
   const handleUsernameChange = event => {
     const value = event.target.value;
     setUsername(value);
@@ -228,7 +224,6 @@ const SignUp = props => {
           ) : (
             <button
               className="create-account-button-ok"
-              type="submit"
               value="Submit"
               onClick={async () => {
                 try {
@@ -246,7 +241,6 @@ const SignUp = props => {
                         props.setShowModal(false);
                         history.push("/");
                         props.logIn(response.data);
-                        console.log(response.date);
                       }
                     });
                 } catch (error) {

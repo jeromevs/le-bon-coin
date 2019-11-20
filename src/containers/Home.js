@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-
 import Offers from "../components/home-components/Offers";
-
 import Hero from "../components/home-components/Hero";
 
 const Home = () => {
@@ -40,7 +38,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [counter]);
+  }, [counter, limit]);
 
   return (
     <>

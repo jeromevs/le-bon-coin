@@ -138,11 +138,12 @@
   background-color: #cad1d9;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .image-card img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 
   justify-content: center;
 }
@@ -436,6 +437,77 @@ aside {
   display: flex;
 
   align-items: center;
+}
+/* ############## Publish ########## */
+
+.publish-container {
+  width: 100%;
+  min-height: calc(100vh - 118px);
+  background-color: #fafafa;
+}
+
+.publish-offer-container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.publish-offer {
+  width: 50%;
+  height: 100vh;
+  background-color: white;
+  /* display: flex;
+  justify-content: space-evenly; */
+}
+
+.publish-offer h3 {
+  border-bottom: solid 4px #f56b2a;
+  padding: 5px;
+}
+
+.publish-offer-form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.offer-validation {
+  background-color: #4183d7;
+  color: white;
+  height: 50px;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+.publish-offer-description {
+  height: 90px;
+  resize: none;
+  border: solid rgb(192, 192, 192) 1px;
+}
+
+.publish-offer-title {
+  height: 35px;
+}
+
+.publish-offer-price {
+  height: 20px;
+  width: 100px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* ############## Footer ########## */
