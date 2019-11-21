@@ -1,6 +1,6 @@
 import React from "react";
 
-const Hero = () => {
+const Hero = props => {
   return (
     <div className="hero">
       <div className="search-zone-hero">
@@ -23,12 +23,23 @@ const Hero = () => {
               </svg>
             </span>
             <input
+              value={props.search}
               className="search-zone-input"
               placeholder="Que recherchez-vous ?"
+              onChange={event => {
+                props.setSearch(event.target.value);
+              }}
             ></input>
           </div>
 
-          <button className="search-zone-button">Rechercher</button>
+          <button
+            className="search-zone-button"
+            onClick={() => {
+              props.fetchData();
+            }}
+          >
+            Rechercher
+          </button>
         </div>
       </div>
     </div>

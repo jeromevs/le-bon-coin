@@ -25,6 +25,7 @@
   align-items: center;
   font-size: 1rem;
   padding-top: 2px;
+  cursor: pointer;
 }
 
 .search {
@@ -101,6 +102,7 @@
   margin-left: 10px;
   background-color: #f4f6f7;
   border-radius: 5px;
+  outline: none;
 }
 
 .search-zone-button {
@@ -488,20 +490,25 @@ aside {
   height: 50px;
   font-size: 1rem;
   margin-top: 20px;
+  outline: none;
+  cursor: pointer;
 }
 .publish-offer-description {
   height: 90px;
   resize: none;
   border: solid rgb(192, 192, 192) 1px;
+  outline: none;
 }
 
 .publish-offer-title {
   height: 35px;
+  outline: none;
 }
 
 .publish-offer-price {
   height: 20px;
   width: 100px;
+  outline: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,

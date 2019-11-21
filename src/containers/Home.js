@@ -9,8 +9,9 @@ const Home = () => {
   const [offers, setOffers] = useState([]);
   const [counter, setCounter] = useState(0);
   const [paging, setPaging] = useState(0);
+  const [search, setSearch] = useState("");
 
-  let limit = 5; // nbre d elements par page
+  let limit = 10; // nbre d elements par page
   const arrayPaging = [];
   let arrayPagingLength = paging / limit; // 38 / 3 = 12.66
 
@@ -19,31 +20,36 @@ const Home = () => {
     element = element + 1;
     arrayPaging.push(element);
   }
+  let url =
+    "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=" +
+    counter +
+    "&limit=" +
+    limit;
+
+  if (search && search.length > 0) {
+    url = url + "&title=" + search;
+  }
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(url);
+      setOffers(response.data.offers);
+      setPaging(response.data.count);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=" +
-            counter +
-            "&limit=" +
-            limit
-        );
-        setOffers(response.data.offers);
-        setPaging(response.data.count);
-
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
     fetchData();
   }, [counter, limit]);
 
   return (
     <>
       <div>
-        <Hero />
+        <Hero fetchData={fetchData} search={search} setSearch={setSearch} />
 
         {isLoading === true ? (
           <p>Downloading: please wait...</p>
