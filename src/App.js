@@ -45,9 +45,11 @@ function App() {
         />
 
         <Switch>
+          {/* Display individual offer after clicking on the list */}
           <Route path="/offer/:id">
             <Offer />
           </Route>
+          {/* Create account */}
           <Route path="/createAccount/">
             <SignUp setShowModal={setShowModal} logIn={logIn} />
           </Route>
@@ -55,6 +57,7 @@ function App() {
           <Route path="/publish/">
             <Publish user={user} />
           </Route>
+          {/* Home page with all the offers */}
           <Route path="/">
             <Home />
           </Route>

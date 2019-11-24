@@ -10,8 +10,8 @@ const Home = () => {
   const [counter, setCounter] = useState(0);
   const [paging, setPaging] = useState(0);
   const [search, setSearch] = useState("");
-
-  let limit = 10; // nbre d elements par page
+  console.log(offers);
+  let limit = 3; // nbre d elements par page
   const arrayPaging = [];
   let arrayPagingLength = paging / limit; // 38 / 3 = 12.66
 
@@ -21,7 +21,7 @@ const Home = () => {
     arrayPaging.push(element);
   }
   let url =
-    "https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=" +
+    "http://localhost:4000/offers/with-count?skip=" +
     counter +
     "&limit=" +
     limit;
@@ -33,7 +33,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(url);
-      setOffers(response.data.offers);
+      setOffers(response.data);
       setPaging(response.data.count);
 
       setIsLoading(false);

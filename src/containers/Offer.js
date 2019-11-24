@@ -4,17 +4,17 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 import format from "date-fns/format";
 
-const Offer = props => {
+const Offer = () => {
   const { id } = useParams();
 
   const [offer, setOffer] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  // display individual offer with name of the publisher
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Axios.get(
-          "https://leboncoin-api.herokuapp.com/api/offer/" + id
+          "http://localhost:4000/offer/?id=" + id
         );
         setOffer(response.data);
         setIsLoading(false);
@@ -23,7 +23,7 @@ const Offer = props => {
       }
     };
     fetchData();
-  });
+  }, []);
 
   return (
     <>
