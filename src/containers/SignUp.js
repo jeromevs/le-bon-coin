@@ -228,14 +228,11 @@ const SignUp = props => {
               onClick={async () => {
                 try {
                   await axios
-                    .post(
-                      "https://leboncoin-api.herokuapp.com/api/user/sign_up",
-                      {
-                        username: username,
-                        email: email,
-                        password: password
-                      }
-                    )
+                    .post("http://localhost:4000/user/sign_up", {
+                      username: username,
+                      email: email,
+                      password: password
+                    })
                     .then(response => {
                       if (response.data) {
                         props.setShowModal(false);

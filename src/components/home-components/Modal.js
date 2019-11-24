@@ -61,13 +61,10 @@ const Modal = props => {
               onClick={async () => {
                 try {
                   await axios
-                    .post(
-                      "https://leboncoin-api.herokuapp.com/api/user/log_in",
-                      {
-                        email: email,
-                        password: password
-                      }
-                    )
+                    .post("http://localhost:4000/user/log_in", {
+                      email: email,
+                      password: password
+                    })
                     .then(response => {
                       if (response.data.token) {
                         props.setShowModal(false);
